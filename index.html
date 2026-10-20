@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Lady Guesthouse | 3-Star Accommodation in Pimville, Soweto</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fbf8ed',
+                            100: '#f5eecb',
+                            200: '#edd893',
+                            300: '#e4bf59',
+                            400: '#dcab32',
+                            500: '#c59120',
+                            600: '#a37117',
+                            700: '#825316',
+                            800: '#6d4218',
+                            900: '#5c3718',
+                        },
+                        charcoal: '#1a1a1a',
+                        cream: '#FAF7F2',
+                        ivory: '#FFFFF8',
+                        earth: '#4A3B32'
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAF7F2;
+            color: #1a1a1a;
+        }
+        h1, h2, h3, .font-serif-title {
+            font-family: 'Cinzel', serif;
+        }
+        .modal-blur {
+            backdrop-filter: blur(8px);
+        }
+        /* Custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF7F2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c59120;
+            border-radius: 4px;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white; color: black; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-gold-500 selection:text-white">
+
+    <!-- TOP ANNOUNCEMENT / CONTACT BAR -->
+    <div class="bg-charcoal text-cream text-xs py-2 px-4 border-b border-gold-500/20 no-print">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-6">
+                <a href="tel:+27119386083" class="hover:text-gold-400 transition flex items-center gap-1">
+                    <i data-lucide="phone" class="w-3.5 h-3.5 text-gold-400"></i> +27 11 938 6083 / +27 72 416 1994
+                </a>
+                <a href="mailto:info@theladyguesthouse.co.za" class="hover:text-gold-400 transition hidden md:flex items-center gap-1">
+                    <i data-lucide="mail" class="w-3.5 h-3.5 text-gold-400"></i> info@theladyguesthouse.co.za
+                </a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-gold-400 font-semibold flex items-center gap-1">
+                    <i data-lucide="award" class="w-3.5 h-3.5"></i> 3-Star Graded Accommodation in Soweto
+                </span>
+                <span class="text-gray-500">|</span>
+                <button onclick="toggleAdminView()" class="text-xs bg-gold-500/20 text-gold-300 hover:bg-gold-500 hover:text-charcoal px-2.5 py-1 rounded transition font-medium flex items-center gap-1">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> <span id="adminBtnText">Admin Portal</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-ivory/95 backdrop-blur-md border-b border-gold-500/10 shadow-sm no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" onclick="showSection('home')" class="flex items-center space-x-3 group">
+                <div class="w-11 h-11 rounded-full bg-charcoal flex items-center justify-center border-2 border-gold-400 text-gold-400 font-serif font-bold text-xl group-hover:scale-105 transition shadow-md">
+                    TL
+                </div>
+                <div>
+                    <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-charcoal block leading-none">THE LADY</span>
+                    <span class="text-[10px] tracking-widest text-gold-600 font-semibold uppercase block mt-1">Guesthouse • Soweto</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium text-gray-700">
+                <button onclick="showSection('home')" class="nav-link hover:text-gold-600 transition py-2" id="nav-home">Home</button>
+                <button onclick="showSection('rooms')" class="nav-link hover:text-gold-600 transition py-2" id="nav-rooms">Rooms & Rates</button>
+                <button onclick="showSection('amenities')" class="nav-link hover:text-gold-600 transition py-2" id="nav-amenities">Amenities</button>
+                <button onclick="showSection('attractions')" class="nav-link hover:text-gold-600 transition py-2" id="nav-attractions">Soweto Guide</button>
+                <button onclick="showSection('gallery')" class="nav-link hover:text-gold-600 transition py-2" id="nav-gallery">Gallery</button>
+                <button onclick="showSection('contact')" class="nav-link hover:text-gold-600 transition py-2" id="nav-contact">Contact Us</button>
+                <button onclick="showSection('lookup')" class="nav-link hover:text-gold-600 transition py-2 text-gray-500 hover:text-charcoal flex items-center gap-1">
+                    <i data-lucide="search" class="w-4 h-4"></i> Find My Booking
+                </button>
+            </nav>
+
+            <!-- Book Now CTA -->
+            <div class="hidden sm:flex items-center space-x-3">
+                <button onclick="openBookingModal()" class="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-charcoal font-semibold px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center gap-2 text-sm">
+                    <i data-lucide="calendar" class="w-4 h-4"></i> Reserve Room
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button onclick="toggleMobileMenu()" class="lg:hidden p-2 text-gray-700 hover:text-gold-600 focus:outline-none">
+                <i data-lucide="menu" id="menuIcon" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-ivory border-b border-gold-200 px-4 pt-2 pb-6 space-y-3">
+            <button onclick="showSection('home'); toggleMobileMenu();" class="block w-full text-left py-2 font-medium text-gray-800 border-b border-gray-100">Home</button>
+            <button onclick="showSection('rooms'); toggleMobileMenu();" class="block w-full text-left py-2 font-medium text-gray-800 border-b border-gray-100">Rooms & Rates</button>
+            <button onclick="showSection('amenities'); toggleMobileMenu();" class="block w-full text-left py-2 font-medium text-gray-800 border-b border-gray-100">Amenities</button>
+            <button onclick="showSection('attractions'); toggleMobileMenu();" class="block w-full text-left py-2 font-medium text-gray-800 border-b border-gray-100">Soweto Guide</button>
+            <button onclick="showSection('gallery'); toggleMobileMenu();" class="block w-full text-left py-2 font-medium text-gray-800 border-b border-gray-100">Gallery</button>
+            <button onclick="showSection('contact'); toggleMobileMenu();" class="block w-full text-left py-2 font-medium text-gray-800 border-b border-gray-100">Contact Us</button>
+            <button onclick="showSection('lookup'); toggleMobileMenu();" class="block w-full text-left py-2 font-medium text-gold-700 flex items-center gap-2">
+                <i data-lucide="search" class="w-4 h-4"></i> Manage My Reservation
+            </button>
+            <button onclick="openBookingModal(); toggleMobileMenu();" class="w-full mt-2 bg-gold-500 text-charcoal font-semibold py-3 rounded-lg text-center shadow">
+                Reserve Room Now
+            </button>
+        </div>
+    </header>
+
+    <!-- NOTIFICATION SYSTEM TOAST CONTAINER -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+
+    <!-- MAIN CONTENT VIEW WRAPPER -->
+    <main id="mainContainer" class="flex-grow">
+
+        <!-- ==================== PUBLIC SITE VIEW ==================== -->
+        <div id="publicSiteView">
+
+            <!-- HOME SECTION -->
+            <section id="section-home" class="page-section">
+                <!-- Hero Section -->
+                <div class="relative bg-charcoal text-white min-h-[600px] flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 z-0 opacity-40">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80" alt="The Lady Guesthouse Atmosphere" class="w-full h-full object-cover object-center">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/60 to-transparent z-10"></div>
+                    
+                    <div class="relative z-20 max-w-5xl mx-auto px-4 py-20 text-center">
+                        <div class="inline-flex items-center gap-2 bg-gold-500/20 backdrop-blur-md border border-gold-400/40 px-4 py-1.5 rounded-full text-gold-300 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-6">
+                            <i data-lucide="star" class="w-4 h-4 fill-gold-400 text-gold-400"></i> Warm Soweto Hospitality in Pimville
+                        </div>
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-ivory tracking-tight mb-6 leading-tight">
+                            A Home Away From Home <br class="hidden sm:inline"><span class="text-gold-400 italic">in Soweto</span>
+                        </h1>
+                        <p class="text-base sm:text-xl text-gray-300 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+                            Experience clean, comfortable 3-star accommodation with hearty breakfasts, communal satellite TV lounge, and authentic South African warmth.
+                        </p>
+                        
+                        <!-- AVAILABILITY SEARCH BAR CARD -->
+                        <div class="bg-ivory/95 text-charcoal rounded-2xl p-4 sm:p-6 shadow-2xl backdrop-blur-md border border-gold-300/30 max-w-4xl mx-auto text-left">
+                            <form onsubmit="handleHeroSearch(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase text-gray-600 mb-1 flex items-center gap-1">
+                                        <i data-lucide="calendar" class="w-3.5 h-3.5 text-gold-600"></i> Check-In Date
+                                    </label>
+                                    <input type="date" id="heroCheckIn" required class="w-full bg-cream border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase text-gray-600 mb-1 flex items-center gap-1">
+                                        <i data-lucide="calendar-check" class="w-3.5 h-3.5 text-gold-600"></i> Check-Out Date
+                                    </label>
+                                    <input type="date" id="heroCheckOut" required class="w-full bg-cream border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase text-gray-600 mb-1 flex items-center gap-1">
+                                        <i data-lucide="users" class="w-3.5 h-3.5 text-gold-600"></i> Guests & Category
+                                    </label>
+                                    <select id="heroCategory" class="w-full bg-cream border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none">
+                                        <option value="ALL">All Categories</option>
+                                        <option value="STANDARD">Standard Room (1-2 Single)</option>
+                                        <option value="DOUBLE">Double Room (1-2 Shared)</option>
+                                        <option value="FAMILY">Family Room (2-4 Guests)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-charcoal font-bold py-2.5 px-4 rounded-lg shadow transition flex items-center justify-center gap-2 text-sm h-[42px]">
+                                        <i data-lucide="search" class="w-4 h-4"></i> Check Rates & Availability
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ABOUT OVERVIEW SECTION -->
+                <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <span class="text-gold-600 uppercase tracking-widest text-xs font-bold block mb-2">Welcome To Pimville</span>
+                            <h2 class="text-3xl font-serif font-bold text-charcoal mb-6">Tranquility & Homely Comfort in the Heart of Soweto</h2>
+                            <p class="text-gray-600 mb-4 leading-relaxed">
+                                Located at 5545 Mphatlatsamaru Street in Pimville Z/5, <strong>The Lady Guesthouse</strong> offers a peaceful retreat for business travellers, tourists, and families exploring the rich history and vibrant culture of Soweto.
+                            </p>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                Guests can start their morning with delicious breakfast options served in our communal dining room, relax in our welcoming satellite TV lounge, or enjoy complimentary hot beverages anytime.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-gold-100 flex items-center justify-center text-gold-700">
+                                        <i data-lucide="wifi" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="text-sm font-semibold text-gray-800">Secure Wi-Fi</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-gold-100 flex items-center justify-center text-gold-700">
+                                        <i data-lucide="coffee" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="text-sm font-semibold text-gray-800">Tea & Coffee Facilities</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-gold-100 flex items-center justify-center text-gold-700">
+                                        <i data-lucide="tv" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="text-sm font-semibold text-gray-800">Satellite TV Access</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-gold-100 flex items-center justify-center text-gold-700">
+                                        <i data-lucide="utensils" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="text-sm font-semibold text-gray-800">Breakfast Dining Room</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" alt="Bedroom Setup" class="rounded-2xl shadow-lg h-64 w-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80" alt="Lounge Area" class="rounded-2xl shadow-lg h-64 w-full object-cover mt-6">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FEATURED ROOMS PREVIEW -->
+                <div class="bg-ivory py-16 border-y border-gold-200/50">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center max-w-2xl mx-auto mb-12">
+                            <span class="text-gold-600 font-bold uppercase text-xs tracking-widest">Select Your Stay</span>
+                            <h2 class="text-3xl font-serif font-bold text-charcoal mt-1">Our Featured Accommodations</h2>
+                            <p class="text-gray-600 mt-2 text-sm">Choose from our tailored options, available with or without breakfast inclusion.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="featuredRoomsContainer">
+                            <!-- Injected dynamically via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ROOMS & RATES SECTION -->
+            <section id="section-rooms" class="page-section hidden py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <span class="text-gold-600 font-bold uppercase text-xs tracking-widest">Comfort & Quality</span>
+                        <h1 class="text-3xl sm:text-4xl font-serif font-bold text-charcoal mt-2">Rooms & Official Rates</h1>
+                        <p class="text-gray-600 mt-3 text-sm sm:text-base">
+                            Transparent pricing with optional freshly prepared breakfast. Standard, Double, and Family units designed for your total relaxation.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="fullRoomsContainer">
+                        <!-- Injected dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- AMENITIES SECTION -->
+            <section id="section-amenities" class="page-section hidden py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <span class="text-gold-600 font-bold uppercase text-xs tracking-widest">Guesthouse Facilities</span>
+                        <h1 class="text-3xl sm:text-4xl font-serif font-bold text-charcoal mt-2">Services & Amenities</h1>
+                        <p class="text-gray-600 mt-2 text-sm">Everything you need for a comfortable stay in Soweto.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-ivory p-6 rounded-2xl border border-gold-200/60 shadow-sm">
+                            <div class="w-12 h-12 bg-gold-100 rounded-xl text-gold-700 flex items-center justify-center mb-4">
+                                <i data-lucide="utensils" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-serif font-bold text-lg mb-2">Dining Room</h3>
+                            <p class="text-gray-600 text-sm">Dedicated dining room area serving warm, fresh breakfast daily upon request.</p>
+                        </div>
+                        <div class="bg-ivory p-6 rounded-2xl border border-gold-200/60 shadow-sm">
+                            <div class="w-12 h-12 bg-gold-100 rounded-xl text-gold-700 flex items-center justify-center mb-4">
+                                <i data-lucide="tv" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-serif font-bold text-lg mb-2">Communal Lounge</h3>
+                            <p class="text-gray-600 text-sm">Spacious shared living room with high-definition Digital Satellite TV access.</p>
+                        </div>
+                        <div class="bg-ivory p-6 rounded-2xl border border-gold-200/60 shadow-sm">
+                            <div class="w-12 h-12 bg-gold-100 rounded-xl text-gold-700 flex items-center justify-center mb-4">
+                                <i data-lucide="coffee" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-serif font-bold text-lg mb-2">Tea & Coffee Station</h3>
+                            <p class="text-gray-600 text-sm">Complimentary tea and coffee station with bar fridge access in shared areas.</p>
+                        </div>
+                        <div class="bg-ivory p-6 rounded-2xl border border-gold-200/60 shadow-sm">
+                            <div class="w-12 h-12 bg-gold-100 rounded-xl text-gold-700 flex items-center justify-center mb-4">
+                                <i data-lucide="wifi" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-serif font-bold text-lg mb-2">Secure Wi-Fi</h3>
+                            <p class="text-gray-600 text-sm">High-speed wireless internet access for work or streaming across the property.</p>
+                        </div>
+                        <div class="bg-ivory p-6 rounded-2xl border border-gold-200/60 shadow-sm">
+                            <div class="w-12 h-12 bg-gold-100 rounded-xl text-gold-700 flex items-center justify-center mb-4">
+                                <i data-lucide="fan" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-serif font-bold text-lg mb-2">Air Conditioning</h3>
+                            <p class="text-gray-600 text-sm">Climate control provided in Family Room options for summer comfort.</p>
+                        </div>
+                        <div class="bg-ivory p-6 rounded-2xl border border-gold-200/60 shadow-sm">
+                            <div class="w-12 h-12 bg-gold-100 rounded-xl text-gold-700 flex items-center justify-center mb-4">
+                                <i data-lucide="sparkles" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-serif font-bold text-lg mb-2">Linens & Toiletries</h3>
+                            <p class="text-gray-600 text-sm">Fresh premium bed linens, soft towels, and essential bath toiletries provided.</p>
+                        </div>
+                        <div class="bg-ivory p-6 rounded-2xl border border-gold-200/60 shadow-sm">
+                            <div class="w-12 h-12 bg-gold-100 rounded-xl text-gold-700 flex items-center justify-center mb-4">
+                                <i data-lucide="bell-ring" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-serif font-bold text-lg mb-2">Room Service</h3>
+                            <p class="text-gray-600 text-sm">Attentive staff assisting with guest requests and daily housekeeping.</p>
+                        </div>
+                        <div class="bg-ivory p-6 rounded-2xl border border-gold-200/60 shadow-sm">
+                            <div class="w-12 h-12 bg-gold-100 rounded-xl text-gold-700 flex items-center justify-center mb-4">
+                                <i data-lucide="shield" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="font-serif font-bold text-lg mb-2">Secure Parking</h3>
+                            <p class="text-gray-600 text-sm">Enclosed property grounds with secure off-street guest parking.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SOWETO ATTRACTIONS GUIDE SECTION -->
+            <section id="section-attractions" class="page-section hidden py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <span class="text-gold-600 font-bold uppercase text-xs tracking-widest">Explore Pimville & Soweto</span>
+                        <h1 class="text-3xl sm:text-4xl font-serif font-bold text-charcoal mt-2">Nearby Attractions</h1>
+                        <p class="text-gray-600 mt-2 text-sm">Discover world-famous heritage sites and recreational facilities located near The Lady Guesthouse.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Attraction 1 -->
+                        <div class="bg-ivory rounded-2xl overflow-hidden border border-gold-200/70 shadow-sm flex flex-col">
+                            <img src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=600&q=80" alt="Soweto Country Club Golf Course" class="h-48 w-full object-cover">
+                            <div class="p-6 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <span class="text-xs font-bold text-gold-600 uppercase">Sports & Recreation</span>
+                                    <h3 class="font-serif font-bold text-xl text-charcoal mt-1 mb-2">Soweto Country Club</h3>
+                                    <p class="text-gray-600 text-sm mb-4">A historic 18-hole golf course located right in Pimville, designed by Gary Player, featuring a modern clubhouse and fairways.</p>
+                                </div>
+                                <div class="text-xs text-gray-500 font-medium border-t border-gray-100 pt-3 flex items-center justify-between">
+                                    <span>Pimville, Soweto</span>
+                                    <span class="text-gold-700">~2 km drive</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Attraction 2 -->
+                        <div class="bg-ivory rounded-2xl overflow-hidden border border-gold-200/70 shadow-sm flex flex-col">
+                            <img src="https://images.unsplash.com/photo-1572949645841-094f3a9c4c94?auto=format&fit=crop&w=600&q=80" alt="Walter Sisulu Square" class="h-48 w-full object-cover">
+                            <div class="p-6 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <span class="text-xs font-bold text-gold-600 uppercase">Historical Monument</span>
+                                    <h3 class="font-serif font-bold text-xl text-charcoal mt-1 mb-2">Walter Sisulu Square</h3>
+                                    <p class="text-gray-600 text-sm mb-4">The site where the Freedom Charter was adopted in 1955. An essential open-air monument and heritage site in Kliptown.</p>
+                                </div>
+                                <div class="text-xs text-gray-500 font-medium border-t border-gray-100 pt-3 flex items-center justify-between">
+                                    <span>Kliptown, Soweto</span>
+                                    <span class="text-gold-700">~4 km drive</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Attraction 3 -->
+                        <div class="bg-ivory rounded-2xl overflow-hidden border border-gold-200/70 shadow-sm flex flex-col">
+                            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80" alt="Vilakazi Street" class="h-48 w-full object-cover">
+                            <div class="p-6 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <span class="text-xs font-bold text-gold-600 uppercase">Culture & Dining</span>
+                                    <h3 class="font-serif font-bold text-xl text-charcoal mt-1 mb-2">Vilakazi Street</h3>
+                                    <p class="text-gray-600 text-sm mb-4">The famous street home to two Nobel Peace Prize winners (Nelson Mandela & Desmond Tutu), featuring restaurants and markets.</p>
+                                </div>
+                                <div class="text-xs text-gray-500 font-medium border-t border-gray-100 pt-3 flex items-center justify-between">
+                                    <span>Orlando West</span>
+                                    <span class="text-gold-700">~7 km drive</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Attraction 4 -->
+                        <div class="bg-ivory rounded-2xl overflow-hidden border border-gold-200/70 shadow-sm flex flex-col">
+                            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80" alt="Hector Pieterson Memorial" class="h-48 w-full object-cover">
+                            <div class="p-6 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <span class="text-xs font-bold text-gold-600 uppercase">Museum & Heritage</span>
+                                    <h3 class="font-serif font-bold text-xl text-charcoal mt-1 mb-2">Hector Pieterson Museum</h3>
+                                    <p class="text-gray-600 text-sm mb-4">Commemorating the June 16, 1976 Soweto Uprising, offering profound insights into South Africa's youth liberation movement.</p>
+                                </div>
+                                <div class="text-xs text-gray-500 font-medium border-t border-gray-100 pt-3 flex items-center justify-between">
+                                    <span>Orlando West</span>
+                                    <span class="text-gold-700">~8 km drive</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Attraction 5 -->
+                        <div class="bg-ivory rounded-2xl overflow-hidden border border-gold-200/70 shadow-sm flex flex-col">
+                            <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=600&q=80" alt="Apartheid Museum" class="h-48 w-full object-cover">
+                            <div class="p-6 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <span class="text-xs font-bold text-gold-600 uppercase">World-Class Museum</span>
+                                    <h3 class="font-serif font-bold text-xl text-charcoal mt-1 mb-2">Apartheid Museum</h3>
+                                    <p class="text-gray-600 text-sm mb-4">The world's pre-eminent museum illustrating the rise and fall of South Africa's state-sanctioned racial segregation era.</p>
+                                </div>
+                                <div class="text-xs text-gray-500 font-medium border-t border-gray-100 pt-3 flex items-center justify-between">
+                                    <span>Gold Reef City area</span>
+                                    <span class="text-gold-700">~14 km drive</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Attraction 6 -->
+                        <div class="bg-ivory rounded-2xl overflow-hidden border border-gold-200/70 shadow-sm flex flex-col">
+                            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Kliptown Museum" class="h-48 w-full object-cover">
+                            <div class="p-6 flex-grow flex flex-col justify-between">
+                                <div>
+                                    <span class="text-xs font-bold text-gold-600 uppercase">Local History</span>
+                                    <h3 class="font-serif font-bold text-xl text-charcoal mt-1 mb-2">Kliptown Open Air Museum</h3>
+                                    <p class="text-gray-600 text-sm mb-4">Interactive displays and photographs celebrating the heritage and struggle heroes of Soweto's oldest township.</p>
+                                </div>
+                                <div class="text-xs text-gray-500 font-medium border-t border-gray-100 pt-3 flex items-center justify-between">
+                                    <span>Kliptown</span>
+                                    <span class="text-gold-700">~4 km drive</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GALLERY SECTION -->
+            <section id="section-gallery" class="page-section hidden py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-8">
+                        <span class="text-gold-600 font-bold uppercase text-xs tracking-widest">Visual Experience</span>
+                        <h1 class="text-3xl sm:text-4xl font-serif font-bold text-charcoal mt-2">Guesthouse Photo Gallery</h1>
+                        <p class="text-gray-600 mt-2 text-sm">Take a tour of our rooms, dining area, and communal facilities.</p>
+                    </div>
+
+                    <!-- Gallery Filter Controls -->
+                    <div class="flex flex-wrap justify-center gap-2 mb-8" id="galleryFilter">
+                        <button onclick="filterGallery('all')" class="gallery-btn active-gallery-btn px-4 py-2 text-xs font-semibold rounded-full bg-gold-500 text-charcoal shadow">All Photos</button>
+                        <button onclick="filterGallery('rooms')" class="gallery-btn px-4 py-2 text-xs font-semibold rounded-full bg-ivory text-gray-700 hover:bg-gold-100 border border-gray-200">Bedrooms</button>
+                        <button onclick="filterGallery('lounge')" class="gallery-btn px-4 py-2 text-xs font-semibold rounded-full bg-ivory text-gray-700 hover:bg-gold-100 border border-gray-200">Lounge & Dining</button>
+                        <button onclick="filterGallery('exterior')" class="gallery-btn px-4 py-2 text-xs font-semibold rounded-full bg-ivory text-gray-700 hover:bg-gold-100 border border-gray-200">Exterior Grounds</button>
+                    </div>
+
+                    <!-- Gallery Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
+                        <div class="gallery-item rooms cursor-pointer rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition" onclick="openLightbox('https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80', 'Family Room Bed Setup')">
+                            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" alt="Family Room Bed" class="h-60 w-full object-cover hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="gallery-item rooms cursor-pointer rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition" onclick="openLightbox('https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80', 'Double Room Interior')">
+                            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=600&q=80" alt="Double Room Interior" class="h-60 w-full object-cover hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="gallery-item lounge cursor-pointer rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition" onclick="openLightbox('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80', 'Communal Lounge with Satellite TV')">
+                            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80" alt="Lounge Area" class="h-60 w-full object-cover hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="gallery-item lounge cursor-pointer rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition" onclick="openLightbox('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80', 'Dining Room Breakfast Area')">
+                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80" alt="Dining Room" class="h-60 w-full object-cover hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="gallery-item rooms cursor-pointer rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition" onclick="openLightbox('https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80', 'Standard Single Beds')">
+                            <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=600&q=80" alt="Standard Single Beds" class="h-60 w-full object-cover hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="gallery-item exterior cursor-pointer rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition" onclick="openLightbox('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80', 'Guesthouse Grounds & Parking')">
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Guesthouse Grounds" class="h-60 w-full object-cover hover:scale-105 transition duration-300">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT & POLICIES SECTION -->
+            <section id="section-contact" class="page-section hidden py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <span class="text-gold-600 font-bold uppercase text-xs tracking-widest">Get In Touch</span>
+                        <h1 class="text-3xl sm:text-4xl font-serif font-bold text-charcoal mt-2">Contact & Location</h1>
+                        <p class="text-gray-600 mt-2 text-sm">We are always ready to assist with reservations and general inquiries.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                        <!-- Contact Form -->
+                        <div class="bg-ivory p-8 rounded-2xl border border-gold-200 shadow-sm">
+                            <h3 class="font-serif font-bold text-xl text-charcoal mb-6 flex items-center gap-2">
+                                <i data-lucide="send" class="w-5 h-5 text-gold-600"></i> Send Us a Message
+                            </h3>
+                            <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Your Full Name</label>
+                                    <input type="text" required placeholder="John Mokoena" class="w-full bg-cream border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none">
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Address</label>
+                                        <input type="email" required placeholder="john@example.com" class="w-full bg-cream border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Phone Number</label>
+                                        <input type="tel" required placeholder="+27 82 000 0000" class="w-full bg-cream border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Subject</label>
+                                    <input type="text" required placeholder="Booking Inquiry / Special Request" class="w-full bg-cream border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Message Details</label>
+                                    <textarea rows="4" required placeholder="How can we assist you today?" class="w-full bg-cream border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-charcoal hover:bg-black text-ivory font-bold py-3 px-6 rounded-lg shadow transition flex items-center justify-center gap-2">
+                                    <i data-lucide="mail" class="w-4 h-4 text-gold-400"></i> Dispatch Message
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Contact Details & Interactive Map Placeholder -->
+                        <div class="space-y-6">
+                            <div class="bg-ivory p-8 rounded-2xl border border-gold-200 shadow-sm">
+                                <h3 class="font-serif font-bold text-xl text-charcoal mb-6">Direct Information</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-10 h-10 rounded-full bg-gold-100 flex items-center justify-center text-gold-700 shrink-0">
+                                            <i data-lucide="map-pin" class="w-5 h-5"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-sm text-gray-800">Physical Address</h4>
+                                            <p class="text-gray-600 text-sm">5545 Mphatlatsamaru Street, Pimville Z/5, Soweto, South Africa</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-10 h-10 rounded-full bg-gold-100 flex items-center justify-center text-gold-700 shrink-0">
+                                            <i data-lucide="phone" class="w-5 h-5"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-sm text-gray-800">Telephone Lines</h4>
+                                            <p class="text-gray-600 text-sm">
+                                                <a href="tel:+27119386083" class="hover:underline">+27 11 938 6083</a> / 
+                                                <a href="tel:+27724161994" class="hover:underline">+27 72 416 1994</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-10 h-10 rounded-full bg-gold-100 flex items-center justify-center text-gold-700 shrink-0">
+                                            <i data-lucide="mail" class="w-5 h-5"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-sm text-gray-800">Email Address</h4>
+                                            <p class="text-gray-600 text-sm"><a href="mailto:info@theladyguesthouse.co.za" class="hover:underline text-gold-700 font-medium">info@theladyguesthouse.co.za</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Map Simulation Container -->
+                            <div class="bg-charcoal text-cream rounded-2xl overflow-hidden h-64 relative border border-gold-300/30 flex flex-col items-center justify-center p-6 text-center shadow-md">
+                                <div class="w-12 h-12 bg-gold-500/20 text-gold-400 rounded-full flex items-center justify-center mb-3 border border-gold-400/30">
+                                    <i data-lucide="map" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="font-serif font-bold text-lg text-ivory mb-1">Pimville Z/5, Soweto</h4>
+                                <p class="text-xs text-gray-400 max-w-md mb-4">5545 Mphatlatsamaru Street, near Soweto Country Club</p>
+                                <a href="https://maps.google.com/?q=5545+Mphatlatsamaru+Street,+Pimville+Z/5,+Soweto" target="_blank" rel="noopener noreferrer" class="bg-gold-500 hover:bg-gold-600 text-charcoal text-xs font-bold px-4 py-2 rounded-lg transition flex items-center gap-1">
+                                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Open in Google Maps
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- POLICY FAQ SECTION -->
+                    <div class="bg-ivory rounded-2xl p-8 border border-gold-200">
+                        <h2 class="text-2xl font-serif font-bold text-charcoal mb-6">Booking Policies & FAQs</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm mb-1">Standard Check-In & Check-Out</h4>
+                                <p class="text-gray-600 text-sm">Check-in time starts at 14:00 PM. Check-out is required by 10:00 AM on departure day. Configurable via admin panel.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm mb-1">Breakfast Hours & Arrangements</h4>
+                                <p class="text-gray-600 text-sm">Freshly prepared breakfast options are served in the dining room between 07:00 AM and 09:30 AM.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm mb-1">Payment Policy</h4>
+                                <p class="text-gray-600 text-sm">Bookings are created as 'Pending' or 'Confirmed'. Payment is accepted via EFT or Cash upon arrival as configured.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm mb-1">Cancellation Terms</h4>
+                                <p class="text-gray-600 text-sm">Cancellations submitted at least 48 hours prior to check-in incur no cancellation charges.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GUEST SELF-SERVICE BOOKING LOOKUP SECTION -->
+            <section id="section-lookup" class="page-section hidden py-12">
+                <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-8">
+                        <span class="text-gold-600 font-bold uppercase text-xs tracking-widest">Self-Service Portal</span>
+                        <h1 class="text-3xl font-serif font-bold text-charcoal mt-1">Manage Your Reservation</h1>
+                        <p class="text-gray-600 mt-2 text-sm">Enter your booking reference code (e.g. TLG-2026-X892) and email to retrieve details.</p>
+                    </div>
+
+                    <div class="bg-ivory p-8 rounded-2xl border border-gold-200 shadow-md">
+                        <form onsubmit="handleLookupSearch(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Booking Reference</label>
+                                    <input type="text" id="lookupRef" required placeholder="e.g. TLG-2026-X892" class="w-full bg-cream border border-gray-300 rounded-lg p-3 text-sm font-mono uppercase focus:ring-2 focus:ring-gold-500 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Guest Email Address</label>
+                                    <input type="email" id="lookupEmail" required placeholder="guest@example.com" class="w-full bg-cream border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-gold-500 focus:outline-none">
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-charcoal font-bold py-3 rounded-lg transition flex items-center justify-center gap-2">
+                                <i data-lucide="search" class="w-4 h-4"></i> Retrieve Booking Details
+                            </button>
+                        </form>
+
+                        <!-- Lookup Result Box -->
+                        <div id="lookupResultBox" class="hidden mt-8 pt-6 border-t border-gray-200">
+                            <!-- Injected dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+
+        <!-- ==================== ADMIN DASHBOARD PORTAL VIEW ==================== -->
+        <div id="adminPortalView" class="hidden bg-gray-100 min-h-screen py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Admin Header Bar -->
+                <div class="bg-charcoal text-white rounded-2xl p-6 mb-8 shadow-xl border border-gold-500/20 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-gold-500 text-charcoal text-xs font-bold px-2.5 py-0.5 rounded uppercase">Staff Access</span>
+                            <span class="text-xs text-gold-300 font-mono">TLG-SYSTEM-v3.2</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-3xl font-serif font-bold text-ivory mt-1">Management Portal</h1>
+                        <p class="text-xs text-gray-400 mt-1">The Lady Guesthouse — Operations & Inventory Control</p>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="exportBookingsCSV()" class="bg-gray-800 hover:bg-gray-700 text-gold-300 border border-gold-500/30 text-xs font-semibold px-4 py-2 rounded-lg transition flex items-center gap-1.5">
+                            <i data-lucide="download" class="w-4 h-4"></i> Export CSV Report
+                        </button>
+                        <button onclick="toggleAdminView()" class="bg-gold-500 hover:bg-gold-600 text-charcoal font-bold text-xs px-4 py-2 rounded-lg transition flex items-center gap-1.5">
+                            <i data-lucide="globe" class="w-4 h-4"></i> Exit to Public Website
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Admin Tabs -->
+                <div class="flex border-b border-gray-300 mb-6 space-x-4 overflow-x-auto pb-1">
+                    <button onclick="switchAdminTab('overview')" id="adminTab-overview" class="admin-tab active-admin-tab py-2 px-4 font-bold text-sm border-b-2 border-gold-600 text-gold-700 flex items-center gap-2">
+                        <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard Overview
+                    </button>
+                    <button onclick="switchAdminTab('reservations')" id="adminTab-reservations" class="admin-tab py-2 px-4 font-semibold text-sm text-gray-600 hover:text-gray-900 flex items-center gap-2">
+                        <i data-lucide="calendar-check" class="w-4 h-4"></i> All Reservations
+                    </button>
+                    <button onclick="switchAdminTab('inventory')" id="adminTab-inventory" class="admin-tab py-2 px-4 font-semibold text-sm text-gray-600 hover:text-gray-900 flex items-center gap-2">
+                        <i data-lucide="bed" class="w-4 h-4"></i> Inventory & Pricing
+                    </button>
+                    <button onclick="switchAdminTab('audit')" id="adminTab-audit" class="admin-tab py-2 px-4 font-semibold text-sm text-gray-600 hover:text-gray-900 flex items-center gap-2">
+                        <i data-lucide="shield-alert" class="w-4 h-4"></i> Audit Logs & Settings
+                    </button>
+                </div>
+
+                <!-- TAB 1: OVERVIEW METRICS -->
+                <div id="adminPanel-overview" class="admin-panel space-y-8">
+                    <!-- Key Performance Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-gray-500 uppercase">Total Reservations</span>
+                                <div class="p-2 bg-gold-100 rounded-lg text-gold-700">
+                                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                                </div>
+                            </div>
+                            <div class="text-3xl font-serif font-bold text-charcoal mt-3" id="metricTotalBookings">0</div>
+                            <span class="text-xs text-gray-500 block mt-1">Recorded in database</span>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-gray-500 uppercase">Occupancy Rate</span>
+                                <div class="p-2 bg-blue-100 rounded-lg text-blue-700">
+                                    <i data-lucide="pie-chart" class="w-5 h-5"></i>
+                                </div>
+                            </div>
+                            <div class="text-3xl font-serif font-bold text-charcoal mt-3" id="metricOccupancy">0%</div>
+                            <span class="text-xs text-green-600 block mt-1 font-medium">Based on 3 main room categories</span>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-gray-500 uppercase">Booked Revenue (ZAR)</span>
+                                <div class="p-2 bg-emerald-100 rounded-lg text-emerald-700">
+                                    <i data-lucide="coins" class="w-5 h-5"></i>
+                                </div>
+                            </div>
+                            <div class="text-3xl font-serif font-bold text-charcoal mt-3" id="metricRevenue">R0</div>
+                            <span class="text-xs text-gray-500 block mt-1">Confirmed & pending totals</span>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-gray-500 uppercase">Pending Approval</span>
+                                <div class="p-2 bg-amber-100 rounded-lg text-amber-700">
+                                    <i data-lucide="clock" class="w-5 h-5"></i>
+                                </div>
+                            </div>
+                            <div class="text-3xl font-serif font-bold text-amber-600 mt-3" id="metricPending">0</div>
+                            <span class="text-xs text-amber-700 block mt-1 font-medium">Requires staff confirmation</span>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity & Today's Schedule -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                            <h3 class="font-serif font-bold text-lg text-charcoal mb-4 flex items-center justify-between">
+                                <span>Recent Guest Reservations</span>
+                                <button onclick="switchAdminTab('reservations')" class="text-xs text-gold-700 hover:underline">View All</button>
+                            </h3>
+                            <div id="adminRecentBookingsList" class="space-y-3">
+                                <!-- Injected dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                            <h3 class="font-serif font-bold text-lg text-charcoal mb-4">Quick Operations & Status Summary</h3>
+                            <div class="space-y-4 text-sm">
+                                <div class="flex items-center justify-between p-3 bg-cream rounded-lg border border-gold-200/50">
+                                    <span class="font-medium text-gray-700">Standard Room Rate Status</span>
+                                    <span class="font-bold text-charcoal" id="dashRateStandard">R550 / R750</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-cream rounded-lg border border-gold-200/50">
+                                    <span class="font-medium text-gray-700">Double Room Rate Status</span>
+                                    <span class="font-bold text-charcoal" id="dashRateDouble">R550 / R750</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-cream rounded-lg border border-gold-200/50">
+                                    <span class="font-medium text-gray-700">Family Room Rate Status</span>
+                                    <span class="font-bold text-charcoal" id="dashRateFamily">R850 / R1,250</span>
+                                </div>
+                                <div class="p-4 bg-charcoal text-cream rounded-xl">
+                                    <h4 class="font-serif font-bold text-gold-400 mb-1">Guesthouse Operations Note</h4>
+                                    <p class="text-xs text-gray-300">All prices calculated per night stay. Breakfast inclusion can be set on per-guest reservation basis. Automated holds expire after 30 minutes unless confirmed.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: RESERVATIONS TABLE MANAGEMENT -->
+                <div id="adminPanel-reservations" class="admin-panel hidden bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                        <div>
+                            <h2 class="font-serif font-bold text-xl text-charcoal">Reservation Directory</h2>
+                            <p class="text-xs text-gray-500">Search, filter, and modify room reservation statuses.</p>
+                        </div>
+                        
+                        <!-- Search & Filters -->
+                        <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+                            <input type="text" id="adminSearchInput" oninput="renderAdminReservationsTable()" placeholder="Search guest or ref..." class="bg-gray-50 border border-gray-300 rounded-lg p-2 text-xs w-full sm:w-48 focus:outline-none focus:ring-2 focus:ring-gold-500">
+                            
+                            <select id="adminStatusFilter" onchange="renderAdminReservationsTable()" class="bg-gray-50 border border-gray-300 rounded-lg p-2 text-xs focus:outline-none focus:ring-2 focus:ring-gold-500">
+                                <option value="ALL">All Statuses</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Confirmed">Confirmed</option>
+                                <option value="Checked In">Checked In</option>
+                                <option value="Checked Out">Checked Out</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-cream text-gray-700 uppercase font-bold border-b border-gold-200">
+                                <tr>
+                                    <th class="p-3">Reference</th>
+                                    <th class="p-3">Guest Details</th>
+                                    <th class="p-3">Category</th>
+                                    <th class="p-3">Dates</th>
+                                    <th class="p-3">Breakfast</th>
+                                    <th class="p-3">Total (ZAR)</th>
+                                    <th class="p-3">Status</th>
+                                    <th class="p-3 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminReservationsTbody" class="divide-y divide-gray-200">
+                                <!-- Injected dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB 3: INVENTORY & PRICING MANAGER -->
+                <div id="adminPanel-inventory" class="admin-panel hidden space-y-6">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                        <h2 class="font-serif font-bold text-xl text-charcoal mb-1">Room Pricing & Rates Configurator</h2>
+                        <p class="text-xs text-gray-500 mb-6">Update official room prices without code modification. Changes affect all future bookings.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="adminRoomPricingCards">
+                            <!-- Injected dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 4: AUDIT LOGS & SETTINGS -->
+                <div id="adminPanel-audit" class="admin-panel hidden space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                            <h3 class="font-serif font-bold text-lg text-charcoal mb-4 flex items-center gap-2">
+                                <i data-lucide="shield-check" class="w-5 h-5 text-gold-600"></i> Administrative Audit Trail
+                            </h3>
+                            <div class="space-y-3 font-mono text-xs max-h-96 overflow-y-auto" id="auditLogsContainer">
+                                <!-- Injected dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                            <h3 class="font-serif font-bold text-lg text-charcoal mb-4">Guesthouse Policy Configuration</h3>
+                            <form onsubmit="handlePolicySave(event)" class="space-y-4 text-xs">
+                                <div>
+                                    <label class="block font-bold text-gray-700 uppercase mb-1">Check-in Window</label>
+                                    <input type="text" id="cfgCheckIn" value="14:00 PM - 20:00 PM" class="w-full border border-gray-300 rounded p-2 focus:ring-2 focus:ring-gold-500">
+                                </div>
+                                <div>
+                                    <label class="block font-bold text-gray-700 uppercase mb-1">Check-out Deadline</label>
+                                    <input type="text" id="cfgCheckOut" value="10:00 AM sharp" class="w-full border border-gray-300 rounded p-2 focus:ring-2 focus:ring-gold-500">
+                                </div>
+                                <div>
+                                    <label class="block font-bold text-gray-700 uppercase mb-1">Cancellation Policy</label>
+                                    <textarea id="cfgCancellation" rows="3" class="w-full border border-gray-300 rounded p-2 focus:ring-2 focus:ring-gold-500">Free cancellation up to 48 hours before check-in. Late cancellations incur a 1-night charge.</textarea>
+                                </div>
+                                <button type="submit" class="bg-charcoal text-ivory font-bold py-2 px-4 rounded hover:bg-black transition">
+                                    Save Operational Policies
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-charcoal text-cream pt-12 pb-8 border-t-2 border-gold-500/30 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-sm">
+                <div>
+                    <span class="font-serif text-xl font-bold tracking-tight text-ivory block">THE LADY</span>
+                    <span class="text-[10px] tracking-widest text-gold-400 font-semibold uppercase block mb-3">Guesthouse • Soweto</span>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Comfortable, secure 3-star accommodation in Pimville, Soweto. A warm home away from home experience.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-gold-400 uppercase text-xs tracking-wider mb-3">Quick Navigation</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><button onclick="showSection('home')" class="hover:text-gold-400 transition">Home</button></li>
+                        <li><button onclick="showSection('rooms')" class="hover:text-gold-400 transition">Rooms & Pricing</button></li>
+                        <li><button onclick="showSection('amenities')" class="hover:text-gold-400 transition">Facilities & Amenities</button></li>
+                        <li><button onclick="showSection('attractions')" class="hover:text-gold-400 transition">Soweto Attractions</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-gold-400 uppercase text-xs tracking-wider mb-3">Contact Information</h4>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li>5545 Mphatlatsamaru Street, Pimville Z/5, Soweto</li>
+                        <li>Phone: +27 11 938 6083</li>
+                        <li>Mobile: +27 72 416 1994</li>
+                        <li>Email: info@theladyguesthouse.co.za</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif font-bold text-gold-400 uppercase text-xs tracking-wider mb-3">Reservations</h4>
+                    <p class="text-xs text-gray-400 mb-3">Ready to plan your trip to Soweto?</p>
+                    <button onclick="openBookingModal()" class="w-full bg-gold-500 hover:bg-gold-600 text-charcoal font-bold py-2 rounded text-xs transition">
+                        Book Accommodation
+                    </button>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 text-center text-xs text-gray-500">
+                &copy; <span id="copyrightYear">2026</span> The Lady Guesthouse. All Rights Reserved. 3-Star Soweto Accommodation.
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ==================== BOOKING ENGINE MODAL (MULTI-STEP FLOW) ==================== -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden overflow-y-auto modal-blur bg-charcoal/70 flex items-center justify-center p-4 no-print">
+        <div class="bg-ivory rounded-2xl max-w-2xl w-full shadow-2xl border border-gold-300 overflow-hidden transform transition-all my-8">
+            
+            <!-- Modal Header -->
+            <div class="bg-charcoal text-cream p-6 border-b border-gold-500/20 flex items-center justify-between">
+                <div>
+                    <span class="text-[10px] text-gold-400 uppercase font-bold tracking-widest block">Online Reservation Engine</span>
+                    <h2 class="font-serif font-bold text-xl text-ivory" id="modalStepTitle">Step 1: Check Availability</h2>
+                </div>
+                <button onclick="closeBookingModal()" class="text-gray-400 hover:text-white p-1 rounded-lg">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="bg-gold-100/50 px-6 py-2 border-b border-gold-200 flex justify-between items-center text-[10px] font-bold text-gray-600 uppercase">
+                <span id="stepIndicator1" class="text-gold-700">1. Dates & Room</span>
+                <span>&rarr;</span>
+                <span id="stepIndicator2">2. Rates</span>
+                <span>&rarr;</span>
+                <span id="stepIndicator3">3. Guest Info</span>
+                <span>&rarr;</span>
+                <span id="stepIndicator4">4. Confirmation</span>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="p-6">
+
+                <!-- STEP 1: DATES & ROOM SELECTION -->
+                <div id="bookingStep1" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Check-In Date</label>
+                            <input type="date" id="bookCheckIn" onchange="calculateBookingQuote()" class="w-full bg-cream border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-gold-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Check-Out Date</label>
+                            <input type="date" id="bookCheckOut" onchange="calculateBookingQuote()" class="w-full bg-cream border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-gold-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Select Room Category</label>
+                        <select id="bookRoomCat" onchange="calculateBookingQuote()" class="w-full bg-cream border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-gold-500">
+                            <option value="STANDARD">Standard Room (Capacity: 1-2 guests, single beds)</option>
+                            <option value="DOUBLE">Double Room (Capacity: 1-2 guests sharing)</option>
+                            <option value="FAMILY">Family Room (Capacity: 2-4 guests sharing double beds)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Breakfast Option</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="border border-gray-300 rounded-lg p-3 flex items-center space-x-2 cursor-pointer hover:bg-gold-50 bg-cream">
+                                <input type="radio" name="bookBreakfast" value="EXCL" checked onchange="calculateBookingQuote()" class="text-gold-600 focus:ring-gold-500">
+                                <div>
+                                    <span class="block text-xs font-bold text-gray-800">Excluding Breakfast</span>
+                                    <span class="text-[10px] text-gray-500">Room rate only</span>
+                                </div>
+                            </label>
+                            <label class="border border-gray-300 rounded-lg p-3 flex items-center space-x-2 cursor-pointer hover:bg-gold-50 bg-cream">
+                                <input type="radio" name="bookBreakfast" value="INCL" onchange="calculateBookingQuote()" class="text-gold-600 focus:ring-gold-500">
+                                <div>
+                                    <span class="block text-xs font-bold text-gray-800">Including Breakfast</span>
+                                    <span class="text-[10px] text-gray-500">Includes breakfast daily</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Live Quote Display Box -->
+                    <div class="bg-charcoal text-cream p-4 rounded-xl border border-gold-400/30 flex justify-between items-center mt-4">
+                        <div>
+                            <span class="text-xs text-gold-400 block font-semibold" id="quoteNightsText">1 Night Stay</span>
+                            <span class="text-[11px] text-gray-400" id="quoteRateBreakdown">Rate calculated automatically</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs text-gray-400 block uppercase">Calculated Total</span>
+                            <span class="text-2xl font-serif font-bold text-gold-400" id="quoteTotalText">R550</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button onclick="goToBookingStep(2)" class="w-full bg-gold-500 hover:bg-gold-600 text-charcoal font-bold py-3 rounded-lg transition flex items-center justify-center gap-2">
+                            Continue To Guest Details &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 2: GUEST DETAILS FORM -->
+                <div id="bookingStep2" class="hidden space-y-4">
+                    <div class="bg-cream p-3 rounded-lg border border-gold-200 text-xs text-gray-700 flex justify-between">
+                        <span>Category: <strong id="summaryCat">Standard</strong></span>
+                        <span>Dates: <strong id="summaryDates">-- to --</strong></span>
+                        <span>Total: <strong id="summaryTotal" class="text-gold-700">R0</strong></span>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Full Guest Name</label>
+                        <input type="text" id="bookGuestName" placeholder="e.g. Thabo Molefe" required class="w-full bg-cream border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-gold-500">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Address</label>
+                            <input type="email" id="bookGuestEmail" placeholder="thabo@example.com" required class="w-full bg-cream border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-gold-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Mobile Phone Number</label>
+                            <input type="tel" id="bookGuestPhone" placeholder="+27 82 123 4567" required class="w-full bg-cream border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-gold-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Special Requests / Notes (Optional)</label>
+                        <textarea id="bookGuestRequests" rows="2" placeholder="Arrival time estimate, dietary requirements, etc." class="w-full bg-cream border border-gray-300 rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-gold-500"></textarea>
+                    </div>
+
+                    <div class="flex gap-3 pt-2">
+                        <button onclick="goToBookingStep(1)" class="w-1/3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 rounded-lg text-sm">
+                            &larr; Back
+                        </button>
+                        <button onclick="submitFinalReservation()" class="w-2/3 bg-gold-500 hover:bg-gold-600 text-charcoal font-bold py-3 rounded-lg transition flex items-center justify-center gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4"></i> Confirm Reservation Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: CONFIRMATION SUCCESS CARD -->
+                <div id="bookingStep3" class="hidden space-y-4 text-center py-4">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i data-lucide="check" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold text-charcoal">Booking Received!</h3>
+                    <p class="text-xs text-gray-600">Your reservation has been generated and logged into our system.</p>
+
+                    <!-- Printable Card -->
+                    <div id="printableCard" class="bg-white p-6 rounded-2xl border-2 border-gold-300 text-left shadow-md space-y-3">
+                        <div class="flex justify-between items-center border-b border-gray-200 pb-3">
+                            <div>
+                                <span class="text-[10px] text-gray-500 uppercase font-bold block">Booking Reference</span>
+                                <span class="text-lg font-mono font-bold text-gold-700" id="confRef">TLG-2026-X892</span>
+                            </div>
+                            <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded" id="confStatus">Pending Confirmation</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div><span class="text-gray-500">Guest Name:</span> <br><strong id="confName" class="text-gray-800">--</strong></div>
+                            <div><span class="text-gray-500">Room Category:</span> <br><strong id="confCat" class="text-gray-800">--</strong></div>
+                            <div><span class="text-gray-500">Check-In:</span> <br><strong id="confIn" class="text-gray-800">--</strong></div>
+                            <div><span class="text-gray-500">Check-Out:</span> <br><strong id="confOut" class="text-gray-800">--</strong></div>
+                            <div><span class="text-gray-500">Breakfast:</span> <br><strong id="confBf" class="text-gray-800">--</strong></div>
+                            <div><span class="text-gray-500">Total Price:</span> <br><strong id="confTotal" class="text-gold-700 font-bold">R0</strong></div>
+                        </div>
+
+                        <div class="text-[11px] text-gray-500 bg-cream p-3 rounded-lg border border-gold-200/50">
+                            <strong>Guesthouse Address:</strong> 5545 Mphatlatsamaru Street, Pimville Z/5, Soweto.<br>
+                            Please present this reference upon arrival.
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3 pt-2">
+                        <button onclick="window.print()" class="w-1/2 bg-gray-800 hover:bg-black text-ivory font-bold py-2.5 rounded-lg text-xs flex items-center justify-center gap-1">
+                            <i data-lucide="printer" class="w-4 h-4"></i> Print Confirmation
+                        </button>
+                        <button onclick="closeBookingModal()" class="w-1/2 bg-gold-500 hover:bg-gold-600 text-charcoal font-bold py-2.5 rounded-lg text-xs">
+                            Done & Close
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4" onclick="closeLightbox()">
+        <div class="max-w-4xl w-full text-center relative" onclick="event.stopPropagation()">
+            <img id="lightboxImage" src="" alt="Gallery Preview" class="max-h-[80vh] mx-auto rounded-xl shadow-2xl">
+            <p id="lightboxCaption" class="text-ivory mt-4 text-sm font-serif"></p>
+            <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white hover:text-gold-400">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ==================== JAVASCRIPT LOGIC & STATE ENGINE ==================== -->
+    <script>
+        // 1. DATA STATE ARCHITECTURE
+        const ROOM_TYPES = {
+            STANDARD: {
+                id: 'STANDARD',
+                name: 'Standard Room',
+                capacity: '1 - 2 Guests (Single beds)',
+                desc: 'Comfortable standard accommodation featuring twin single beds, communal shower facilities, satellite TV lounge access, and tea/coffee station.',
+                defaultRateExcl: 550,
+                defaultRateIncl: 750,
+                img: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=600&q=80',
+                amenities: ['Communal Shower', 'Twin Single Beds', 'Communal Satellite TV', 'Coffee Station']
+            },
+            DOUBLE: {
+                id: 'DOUBLE',
+                name: 'Double Room',
+                capacity: '1 - 2 Guests sharing',
+                desc: 'Cozy double bedroom equipped with double bed, private room television, satellite channel access, shower, and communal tea/coffee setup.',
+                defaultRateExcl: 550,
+                defaultRateIncl: 750,
+                img: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=600&q=80',
+                amenities: ['Private Shower', 'Satellite Television', 'Double Bed', 'Coffee Station']
+            },
+            FAMILY: {
+                id: 'FAMILY',
+                name: 'Family Room',
+                capacity: '2 - 4 Guests sharing',
+                desc: 'Spacious family unit accommodating up to 4 guests with double beds, air conditioning, private shower, satellite television, and coffee facilities.',
+                defaultRateExcl: 850,
+                defaultRateIncl: 1250,
+                img: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80',
+                amenities: ['Private Shower', 'Air Conditioning', 'Satellite TV', 'Multiple Beds']
+            }
+        };
+
+        // SEED DATA FOR REALISTIC SYSTEM DEMO
+        const INITIAL_SEED_BOOKINGS = [
+            {
+                id: 'TLG-2026-X892',
+                guestName: 'Sibusiso Ndlovu',
+                email: 'sibusiso@example.com',
+                phone: '+27 82 456 7890',
+                category: 'DOUBLE',
+                checkIn: '2026-10-22',
+                checkOut: '2026-10-24',
+                breakfast: 'INCL',
+                totalPrice: 1500,
+                status: 'Confirmed',
+                specialRequests: 'Late arrival around 18:00 PM',
+                createdAt: '2026-10-18T10:00:00Z'
+            },
+            {
+                id: 'TLG-2026-M104',
+                guestName: 'Amanda Coetzee',
+                email: 'amanda@example.co.za',
+                phone: '+27 71 333 9988',
+                category: 'FAMILY',
+                checkIn: '2026-10-25',
+                checkOut: '2026-10-27',
+                breakfast: 'INCL',
+                totalPrice: 2500,
+                status: 'Pending',
+                specialRequests: 'Extra towels for children',
+                createdAt: '2026-10-19T14:30:00Z'
+            },
+            {
+                id: 'TLG-2026-K441',
+                guestName: 'David Khumalo',
+                email: 'dkhumalo@gmail.com',
+                phone: '+27 83 901 2233',
+                category: 'STANDARD',
+                checkIn: '2026-10-20',
+                checkOut: '2026-10-21',
+                breakfast: 'EXCL',
+                totalPrice: 550,
+                status: 'Checked In',
+                specialRequests: 'Golf tournament participant',
+                createdAt: '2026-10-15T09:12:00Z'
+            }
+        ];
+
+        const INITIAL_AUDIT_LOGS = [
+            'System initialized with standard rates.',
+            'Seed booking TLG-2026-X892 confirmed.',
+            'Pricing verification completed for Soweto operations.'
+        ];
+
+        // LOCAL STORAGE ENGINE WRAPPERS
+        function getStoredBookings() {
+            const data = localStorage.getItem('tlg_bookings');
+            return data ? JSON.parse(data) : INITIAL_SEED_BOOKINGS;
+        }
+
+        function saveStoredBookings(bookings) {
+            localStorage.setItem('tlg_bookings', JSON.stringify(bookings));
+        }
+
+        function getStoredRates() {
+            const data = localStorage.getItem('tlg_rates');
+            if (data) return JSON.parse(data);
+            return {
+                STANDARD: { excl: 550, incl: 750 },
+                DOUBLE: { excl: 550, incl: 750 },
+                FAMILY: { excl: 850, incl: 1250 }
+            };
+        }
+
+        function saveStoredRates(rates) {
+            localStorage.setItem('tlg_rates', JSON.stringify(rates));
+        }
+
+        function getAuditLogs() {
+            const data = localStorage.getItem('tlg_audit');
+            return data ? JSON.parse(data) : INITIAL_AUDIT_LOGS;
+        }
+
+        function addAuditLog(msg) {
+            const logs = getAuditLogs();
+            const entry = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            logs.unshift(entry);
+            localStorage.setItem('tlg_audit', JSON.stringify(logs.slice(0, 30)));
+        }
+
+        // 2. APP INITIALIZATION ON LOAD
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            setDefaultDates();
+            renderPublicRoomCards();
+            refreshAdminMetrics();
+            
+            // Set default view
+            showSection('home');
+        });
+
+        function setDefaultDates() {
+            const today = new Date();
+            const tomorrow = new Date();
+            tomorrow.setDate(today.getDate() + 1);
+
+            const format = date => date.toISOString().split('T')[0];
+            
+            document.getElementById('heroCheckIn').value = format(today);
+            document.getElementById('heroCheckOut').value = format(tomorrow);
+            document.getElementById('bookCheckIn').value = format(today);
+            document.getElementById('bookCheckOut').value = format(tomorrow);
+        }
+
+        // 3. UI NAVIGATION LOGIC
+        function showSection(sectionId) {
+            document.getElementById('publicSiteView').classList.remove('hidden');
+            document.getElementById('adminPortalView').classList.add('hidden');
+
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(sec => sec.classList.add('hidden'));
+
+            const target = document.getElementById(`section-${sectionId}`);
+            if (target) {
+                target.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Update Nav link active state
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('text-gold-600', 'font-bold'));
+            const activeNav = document.getElementById(`nav-${sectionId}`);
+            if (activeNav) activeNav.classList.add('text-gold-600', 'font-bold');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function toggleAdminView() {
+            const publicView = document.getElementById('publicSiteView');
+            const adminView = document.getElementById('adminPortalView');
+            const btnText = document.getElementById('adminBtnText');
+
+            if (adminView.classList.contains('hidden')) {
+                publicView.classList.add('hidden');
+                adminView.classList.remove('hidden');
+                btnText.textContent = 'Guest Website';
+                switchAdminTab('overview');
+                showToast('Welcome to Staff Management Portal', 'info');
+            } else {
+                adminView.classList.add('hidden');
+                publicView.classList.remove('hidden');
+                btnText.textContent = 'Admin Portal';
+                showSection('home');
+            }
+        }
+
+        // 4. ROOM CARDS RENDER ENGINE
+        function renderPublicRoomCards() {
+            const rates = getStoredRates();
+            const featuredContainer = document.getElementById('featuredRoomsContainer');
+            const fullContainer = document.getElementById('fullRoomsContainer');
+
+            let html = '';
+            Object.keys(ROOM_TYPES).forEach(key => {
+                const room = ROOM_TYPES[key];
+                const roomRate = rates[key];
+
+                html += `
+                    <div class="bg-ivory rounded-2xl overflow-hidden border border-gold-200/80 shadow-md flex flex-col justify-between hover:shadow-xl transition duration-300">
+                        <div>
+                            <div class="relative h-52 overflow-hidden">
+                                <img src="${room.img}" alt="${room.name}" class="w-full h-full object-cover">
+                                <span class="absolute top-3 right-3 bg-charcoal/90 text-gold-400 text-xs font-bold px-3 py-1 rounded-full border border-gold-400/30">
+                                    Capacity: ${room.capacity}
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-serif font-bold text-2xl text-charcoal mb-2">${room.name}</h3>
+                                <p class="text-gray-600 text-xs leading-relaxed mb-4">${room.desc}</p>
+                                
+                                <div class="space-y-1 bg-cream p-3 rounded-xl border border-gold-200/50 mb-4 text-xs">
+                                    <div class="flex justify-between font-semibold">
+                                        <span class="text-gray-600">Excl. Breakfast:</span>
+                                        <span class="text-charcoal">R${roomRate.excl} / night</span>
+                                    </div>
+                                    <div class="flex justify-between font-semibold">
+                                        <span class="text-gold-700">Incl. Breakfast:</span>
+                                        <span class="text-gold-700 font-bold">R${roomRate.incl} / night</span>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-wrap gap-1.5 mb-2">
+                                    ${room.amenities.map(a => `<span class="bg-gold-100/70 text-gold-800 text-[10px] font-medium px-2 py-0.5 rounded">${a}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <button onclick="openBookingModal('${room.id}')" class="w-full bg-gold-500 hover:bg-gold-600 text-charcoal font-bold py-2.5 rounded-lg shadow transition text-sm flex items-center justify-center gap-1">
+                                <i data-lucide="calendar" class="w-4 h-4"></i> Reserve ${room.name}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            if (featuredContainer) featuredContainer.innerHTML = html;
+            if (fullContainer) fullContainer.innerHTML = html;
+            lucide.createIcons();
+        }
+
+        // 5. MULTI-STEP BOOKING ENGINE LOGIC
+        let currentBookingQuote = { nights: 1, total: 550, ratePerNight: 550 };
+
+        function openBookingModal(categoryKey = 'STANDARD') {
+            document.getElementById('bookingModal').classList.remove('hidden');
+            document.getElementById('bookRoomCat').value = categoryKey;
+            goToBookingStep(1);
+            calculateBookingQuote();
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        function handleHeroSearch(e) {
+            e.preventDefault();
+            const checkIn = document.getElementById('heroCheckIn').value;
+            const checkOut = document.getElementById('heroCheckOut').value;
+            const cat = document.getElementById('heroCategory').value;
+
+            document.getElementById('bookCheckIn').value = checkIn;
+            document.getElementById('bookCheckOut').value = checkOut;
+            if (cat !== 'ALL') {
+                document.getElementById('bookRoomCat').value = cat;
+            }
+
+            openBookingModal(cat !== 'ALL' ? cat : 'STANDARD');
+        }
+
+        function calculateBookingQuote() {
+            const checkInVal = document.getElementById('bookCheckIn').value;
+            const checkOutVal = document.getElementById('bookCheckOut').value;
+            const catKey = document.getElementById('bookRoomCat').value;
+            const breakfastOpt = document.querySelector('input[name="bookBreakfast"]:checked').value;
+
+            const d1 = new Date(checkInVal);
+            const d2 = new Date(checkOutVal);
+            
+            let nights = Math.ceil((d2 - d1) / (1000 * 60 * 60 * 24));
+            if (isNaN(nights) || nights < 1) nights = 1;
+
+            const rates = getStoredRates();
+            const categoryRates = rates[catKey] || { excl: 550, incl: 750 };
+            
+            const ratePerNight = breakfastOpt === 'INCL' ? categoryRates.incl : categoryRates.excl;
+            const grandTotal = nights * ratePerNight;
+
+            currentBookingQuote = { nights, total: grandTotal, ratePerNight, catKey, breakfastOpt, checkInVal, checkOutVal };
+
+            // Update UI elements
+            document.getElementById('quoteNightsText').textContent = `${nights} Night${nights > 1 ? 's' : ''} Stay`;
+            document.getElementById('quoteRateBreakdown').textContent = `R${ratePerNight} / night (${breakfastOpt === 'INCL' ? 'Breakfast Included' : 'Excl. Breakfast'})`;
+            document.getElementById('quoteTotalText').textContent = `R${grandTotal}`;
+        }
+
+        function goToBookingStep(stepNum) {
+            document.getElementById('bookingStep1').classList.add('hidden');
+            document.getElementById('bookingStep2').classList.add('hidden');
+            document.getElementById('bookingStep3').classList.add('hidden');
+
+            document.getElementById(`bookingStep${stepNum}`).classList.remove('hidden');
+
+            const titleElem = document.getElementById('modalStepTitle');
+            if (stepNum === 1) titleElem.textContent = 'Step 1: Room & Date Selection';
+            if (stepNum === 2) {
+                titleElem.textContent = 'Step 2: Guest Details & Confirmation';
+                // Fill Summary
+                document.getElementById('summaryCat').textContent = ROOM_TYPES[currentBookingQuote.catKey].name;
+                document.getElementById('summaryDates').textContent = `${currentBookingQuote.checkInVal} to ${currentBookingQuote.checkOutVal} (${currentBookingQuote.nights} nights)`;
+                document.getElementById('summaryTotal').textContent = `R${currentBookingQuote.total}`;
+            }
+            if (stepNum === 3) titleElem.textContent = 'Step 3: Reservation Confirmed';
+        }
+
+        function submitFinalReservation() {
+            const guestName = document.getElementById('bookGuestName').value.trim();
+            const guestEmail = document.getElementById('bookGuestEmail').value.trim();
+            const guestPhone = document.getElementById('bookGuestPhone').value.trim();
+            const requests = document.getElementById('bookGuestRequests').value.trim();
+
+            if (!guestName || !guestEmail || !guestPhone) {
+                showToast('Please complete all required guest fields.', 'error');
+                return;
+            }
+
+            // Generate Ref Code
+            const refCode = `TLG-2026-X${Math.floor(100 + Math.random() * 900)}`;
+
+            const newBooking = {
+                id: refCode,
+                guestName,
+                email: guestEmail,
+                phone: guestPhone,
+                category: currentBookingQuote.catKey,
+                checkIn: currentBookingQuote.checkInVal,
+                checkOut: currentBookingQuote.checkOutVal,
+                breakfast: currentBookingQuote.breakfastOpt,
+                totalPrice: currentBookingQuote.total,
+                status: 'Pending',
+                specialRequests: requests,
+                createdAt: new Date().toISOString()
+            };
+
+            // Save to State
+            const bookings = getStoredBookings();
+            bookings.unshift(newBooking);
+            saveStoredBookings(bookings);
+            addAuditLog(`New booking ${refCode} created by guest ${guestName}.`);
+
+            // Populate Confirmation Card
+            document.getElementById('confRef').textContent = refCode;
+            document.getElementById('confName').textContent = guestName;
+            document.getElementById('confCat').textContent = ROOM_TYPES[currentBookingQuote.catKey].name;
+            document.getElementById('confIn').textContent = currentBookingQuote.checkInVal;
+            document.getElementById('confOut').textContent = currentBookingQuote.checkOutVal;
+            document.getElementById('confBf').textContent = currentBookingQuote.breakfastOpt === 'INCL' ? 'Included' : 'Excluded';
+            document.getElementById('confTotal').textContent = `R${currentBookingQuote.total}`;
+
+            refreshAdminMetrics();
+            goToBookingStep(3);
+            showToast(`Reservation ${refCode} successfully created!`, 'success');
+        }
+
+        // 6. GUEST LOOKUP LOGIC
+        function handleLookupSearch(e) {
+            e.preventDefault();
+            const ref = document.getElementById('lookupRef').value.trim().toUpperCase();
+            const email = document.getElementById('lookupEmail').value.trim().toLowerCase();
+            const resultBox = document.getElementById('lookupResultBox');
+
+            const bookings = getStoredBookings();
+            const found = bookings.find(b => b.id.toUpperCase() === ref && b.email.toLowerCase() === email);
+
+            if (!found) {
+                resultBox.classList.remove('hidden');
+                resultBox.innerHTML = `
+                    <div class="bg-red-50 text-red-700 p-4 rounded-xl text-xs font-semibold">
+                        No reservation matching reference '${ref}' and email '${email}' was found. Please check your details or call us directly.
+                    </div>
+                `;
+                return;
+            }
+
+            resultBox.classList.remove('hidden');
+            resultBox.innerHTML = `
+                <div class="bg-cream p-6 rounded-2xl border border-gold-300 space-y-3">
+                    <div class="flex justify-between items-center border-b border-gold-200 pb-2">
+                        <span class="font-mono font-bold text-gold-700 text-lg">${found.id}</span>
+                        <span class="text-xs font-bold px-3 py-1 rounded ${getStatusBadgeClass(found.status)}">${found.status}</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-xs text-gray-700">
+                        <div><strong>Guest:</strong> ${found.guestName}</div>
+                        <div><strong>Room:</strong> ${ROOM_TYPES[found.category] ? ROOM_TYPES[found.category].name : found.category}</div>
+                        <div><strong>Dates:</strong> ${found.checkIn} to ${found.checkOut}</div>
+                        <div><strong>Total:</strong> R${found.totalPrice}</div>
+                    </div>
+                    <div class="pt-2 text-xs text-gray-500">
+                        Need to modify or cancel this reservation? Contact our front desk at +27 11 938 6083 quoting reference ${found.id}.
+                    </div>
+                </div>
+            `;
+        }
+
+        // 7. ADMIN DASHBOARD METRICS & TABLE
+        function refreshAdminMetrics() {
+            const bookings = getStoredBookings();
+            const rates = getStoredRates();
+
+            // Total
+            document.getElementById('metricTotalBookings').textContent = bookings.length;
+
+            // Pending
+            const pendingCount = bookings.filter(b => b.status === 'Pending').length;
+            document.getElementById('metricPending').textContent = pendingCount;
+
+            // Revenue
+            const rev = bookings.reduce((sum, b) => (b.status !== 'Cancelled' ? sum + b.totalPrice : sum), 0);
+            document.getElementById('metricRevenue').textContent = `R${rev.toLocaleString()}`;
+
+            // Occupancy mock calculation based on active stays
+            const occupancy = Math.min(100, Math.round((bookings.filter(b => b.status === 'Checked In' || b.status === 'Confirmed').length / 3) * 100));
+            document.getElementById('metricOccupancy').textContent = `${occupancy}%`;
+
+            // Display Rates on Quick Summary
+            document.getElementById('dashRateStandard').textContent = `R${rates.STANDARD.excl} / R${rates.STANDARD.incl}`;
+            document.getElementById('dashRateDouble').textContent = `R${rates.DOUBLE.excl} / R${rates.DOUBLE.incl}`;
+            document.getElementById('dashRateFamily').textContent = `R${rates.FAMILY.excl} / R${rates.FAMILY.incl}`;
+
+            renderRecentBookingsList(bookings);
+            renderAdminReservationsTable();
+            renderAdminPricingCards();
+            renderAuditLogs();
+        }
+
+        function renderRecentBookingsList(bookings) {
+            const container = document.getElementById('adminRecentBookingsList');
+            const recent = bookings.slice(0, 5);
+
+            if (recent.length === 0) {
+                container.innerHTML = `<p class="text-xs text-gray-500">No recent bookings recorded.</p>`;
+                return;
+            }
+
+            container.innerHTML = recent.map(b => `
+                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl border border-gray-200 text-xs">
+                    <div>
+                        <span class="font-bold text-gray-800">${b.guestName}</span>
+                        <span class="text-gray-500 font-mono text-[10px] block">${b.id} • ${b.checkIn}</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-gold-700 block">R${b.totalPrice}</span>
+                        <span class="text-[10px] font-semibold px-2 py-0.5 rounded ${getStatusBadgeClass(b.status)}">${b.status}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderAdminReservationsTable() {
+            const tbody = document.getElementById('adminReservationsTbody');
+            const search = document.getElementById('adminSearchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('adminStatusFilter').value;
+
+            let bookings = getStoredBookings();
+
+            if (statusFilter !== 'ALL') {
+                bookings = bookings.filter(b => b.status === statusFilter);
+            }
+
+            if (search) {
+                bookings = bookings.filter(b => 
+                    b.guestName.toLowerCase().includes(search) || 
+                    b.id.toLowerCase().includes(search) ||
+                    b.email.toLowerCase().includes(search)
+                );
+            }
+
+            if (bookings.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" class="p-4 text-center text-gray-500">No reservations found.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = bookings.map(b => `
+                <tr class="hover:bg-cream/50 transition">
+                    <td class="p-3 font-mono font-bold text-gold-700">${b.id}</td>
+                    <td class="p-3">
+                        <strong class="text-gray-900 block">${b.guestName}</strong>
+                        <span class="text-gray-500 text-[10px]">${b.email} | ${b.phone}</span>
+                    </td>
+                    <td class="p-3 font-medium">${b.category}</td>
+                    <td class="p-3 text-[11px]">${b.checkIn}<br><span class="text-gray-400">to ${b.checkOut}</span></td>
+                    <td class="p-3">${b.breakfast === 'INCL' ? '<span class="text-emerald-700 font-bold">Yes</span>' : '<span class="text-gray-400">No</span>'}</td>
+                    <td class="p-3 font-bold text-gray-800">R${b.totalPrice}</td>
+                    <td class="p-3"><span class="px-2 py-1 rounded text-[10px] font-bold ${getStatusBadgeClass(b.status)}">${b.status}</span></td>
+                    <td class="p-3 text-right">
+                        <select onchange="updateBookingStatus('${b.id}', this.value)" class="text-[10px] border border-gray-300 rounded p-1 bg-white focus:outline-none">
+                            <option value="" disabled selected>Change Status</option>
+                            <option value="Confirmed">Confirm</option>
+                            <option value="Checked In">Check In</option>
+                            <option value="Checked Out">Check Out</option>
+                            <option value="Cancelled">Cancel</option>
+                        </select>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function updateBookingStatus(refId, newStatus) {
+            const bookings = getStoredBookings();
+            const idx = bookings.findIndex(b => b.id === refId);
+            if (idx !== -1) {
+                bookings[idx].status = newStatus;
+                saveStoredBookings(bookings);
+                addAuditLog(`Booking ${refId} status changed to ${newStatus}.`);
+                refreshAdminMetrics();
+                showToast(`Booking ${refId} set to ${newStatus}`, 'success');
+            }
+        }
+
+        function renderAdminPricingCards() {
+            const container = document.getElementById('adminRoomPricingCards');
+            const rates = getStoredRates();
+
+            container.innerHTML = Object.keys(ROOM_TYPES).map(key => {
+                const room = ROOM_TYPES[key];
+                const r = rates[key];
+                return `
+                    <div class="bg-cream p-5 rounded-2xl border border-gold-300 space-y-3">
+                        <h4 class="font-serif font-bold text-lg text-charcoal">${room.name}</h4>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-600 uppercase mb-0.5">Rate Excl. Breakfast (ZAR)</label>
+                            <input type="number" id="rateExcl_${key}" value="${r.excl}" class="w-full border border-gray-300 rounded p-2 text-xs font-bold text-gray-800">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-600 uppercase mb-0.5">Rate Incl. Breakfast (ZAR)</label>
+                            <input type="number" id="rateIncl_${key}" value="${r.incl}" class="w-full border border-gray-300 rounded p-2 text-xs font-bold text-gold-700">
+                        </div>
+                        <button onclick="saveRoomRate('${key}')" class="w-full bg-gold-500 hover:bg-gold-600 text-charcoal font-bold py-2 rounded text-xs transition">
+                            Update Rates
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function saveRoomRate(catKey) {
+            const exclVal = parseInt(document.getElementById(`rateExcl_${catKey}`).value);
+            const inclVal = parseInt(document.getElementById(`rateIncl_${catKey}`).value);
+
+            if (isNaN(exclVal) || isNaN(inclVal)) {
+                showToast('Please enter valid numerical prices.', 'error');
+                return;
+            }
+
+            const rates = getStoredRates();
+            rates[catKey] = { excl: exclVal, incl: inclVal };
+            saveStoredRates(rates);
+            addAuditLog(`Rates for category ${catKey} updated: Excl R${exclVal}, Incl R${inclVal}.`);
+
+            renderPublicRoomCards();
+            refreshAdminMetrics();
+            showToast(`${catKey} rates updated successfully!`, 'success');
+        }
+
+        function renderAuditLogs() {
+            const container = document.getElementById('auditLogsContainer');
+            const logs = getAuditLogs();
+            container.innerHTML = logs.map(l => `<div class="p-2 bg-gray-50 rounded border border-gray-200 text-gray-700">${l}</div>`).join('');
+        }
+
+        function switchAdminTab(tabName) {
+            document.querySelectorAll('.admin-panel').forEach(p => p.classList.add('hidden'));
+            document.querySelectorAll('.admin-tab').forEach(t => {
+                t.classList.remove('border-b-2', 'border-gold-600', 'text-gold-700', 'font-bold');
+                t.classList.add('text-gray-600');
+            });
+
+            document.getElementById(`adminPanel-${tabName}`).classList.remove('hidden');
+            const activeTabBtn = document.getElementById(`adminTab-${tabName}`);
+            activeTabBtn.classList.add('border-b-2', 'border-gold-600', 'text-gold-700', 'font-bold');
+        }
+
+        function exportBookingsCSV() {
+            const bookings = getStoredBookings();
+            if (bookings.length === 0) {
+                showToast('No bookings available to export.', 'error');
+                return;
+            }
+
+            let csv = 'Reference,Guest Name,Email,Phone,Category,CheckIn,CheckOut,Breakfast,TotalZAR,Status\n';
+            bookings.forEach(b => {
+                csv += `"${b.id}","${b.guestName}","${b.email}","${b.phone}","${b.category}","${b.checkIn}","${b.checkOut}","${b.breakfast}",${b.totalPrice},"${b.status}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('href', url);
+            a.setAttribute('download', `The_Lady_Guesthouse_Bookings_${new Date().toISOString().split('T')[0]}.csv`);
+            a.click();
+            showToast('CSV Report downloaded!', 'success');
+        }
+
+        // 8. UTILITY & TOAST NOTIFICATION HELPERS
+        function getStatusBadgeClass(status) {
+            switch(status) {
+                case 'Confirmed': return 'bg-emerald-100 text-emerald-800';
+                case 'Pending': return 'bg-amber-100 text-amber-800';
+                case 'Checked In': return 'bg-blue-100 text-blue-800';
+                case 'Checked Out': return 'bg-gray-200 text-gray-800';
+                case 'Cancelled': return 'bg-red-100 text-red-800';
+                default: return 'bg-gray-100 text-gray-700';
+            }
+        }
+
+        function showToast(msg, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            
+            let bg = 'bg-charcoal text-ivory border-gold-400';
+            if (type === 'success') bg = 'bg-emerald-800 text-white border-emerald-400';
+            if (type === 'error') bg = 'bg-red-800 text-white border-red-400';
+
+            toast.className = `p-4 rounded-xl shadow-xl border text-xs font-semibold flex items-center gap-2 transform transition duration-300 pointer-events-auto ${bg}`;
+            toast.innerHTML = `<span>${msg}</span>`;
+
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast('Thank you for your message! Our Soweto desk will respond shortly.', 'success');
+            e.target.reset();
+        }
+
+        function handlePolicySave(e) {
+            e.preventDefault();
+            addAuditLog('Operational policies updated in system.');
+            showToast('Policies updated successfully!', 'success');
+        }
+
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.gallery-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-gold-500', 'text-charcoal');
+                btn.classList.add('bg-ivory', 'text-gray-700');
+            });
+
+            event.target.classList.remove('bg-ivory', 'text-gray-700');
+            event.target.classList.add('bg-gold-500', 'text-charcoal');
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        function openLightbox(src, caption) {
+            document.getElementById('lightboxImage').src = src;
+            document.getElementById('lightboxCaption').textContent = caption;
+            document.getElementById('lightboxModal').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
